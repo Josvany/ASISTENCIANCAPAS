@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Entity.EmpleadosEntity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1>Empleados <small>Listado de Empleados</small></h1>
+</div>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Cátalogos", "Index", "Empleados")</li>
+    <li class="active">Listado de Empleados</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-3">
+        <a href="@Url.Action("Report",new {id= "PDF"})" class="glyphicon glyphicon-zoom-in"> Reporte PDF</a>
+    </div>
+    <div class="col-md-4">
+        <a href="@Url.Action("Report",new {id= "Excel"})" class="glyphicon glyphicon-zoom-in"> Reporte Excel</a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("Report",new {id= "Word"})" class="glyphicon glyphicon-zoom-in"> Reporte Word</a>
+    </div>
+    <div class="col-md-2">
+        <a href="@Url.Action("Report",new {id= "Image"})" class="glyphicon glyphicon-zoom-in"> Reporte Image</a>
+    </div>
+</div>
+<hr />
+<p>
+    <a href="~/Empleados/Editar"
+       class="btn btn-primary pull-right">Nuevo Empleado</a>
+</p>
+
+
+
+
+
+
+
+
+<table id="grid" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmpleados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Turno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaLibre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdEmpleados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaLibre)
+                </td>
+                <td>
+                    <a href="@Url.Action("Editar","Empleados", new { IdEmpleados = item.IdEmpleados })"
+                       class="btn btn-danger">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
